@@ -23,9 +23,9 @@ jobs:
         python -m venv venv
         venv/bin/pip install -r requirements.txt
 
-- name: Install Railway CLI via npm
-  run: |
-    npm install -g railway
+    - name: Install Railway CLI via npm
+      run: |
+      npm install -g railway
 
 
     - name: Authenticate Railway with Token
