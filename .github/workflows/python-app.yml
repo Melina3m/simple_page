@@ -38,9 +38,9 @@ jobs:
         npm install -g @railway/cli
         railway --version
 
-    - name: Railway Login (interactive)
+    - name: Authenticate with Railway CLI
       run: |
-        railway login --interactive
+        echo ${{ secrets.RAILWAY_TOKEN }} | railway login --token
 
     - name: Deploy to Railway
       run: |
