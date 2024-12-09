@@ -25,8 +25,7 @@ jobs:
 
     - name: Install Railway CLI via npm
       run: |
-      npm install -g railway
-
+        npm install -g railway
 
     - name: Authenticate Railway with Token
       run: |
