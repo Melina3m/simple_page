@@ -25,7 +25,8 @@ jobs:
 
     - name: Install Railway CLI
       run: |
-        curl -sSL https://cli.railway.app/install.sh | bash
+        curl -sSL https://railway.app/cli.sh | bash
+        sudo mv /root/.local/bin/railway /usr/local/bin/railway
         railway --version
 
     - name: Authenticate Railway with Token
