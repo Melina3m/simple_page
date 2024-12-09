@@ -7,15 +7,16 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest  # Puedes mantener ubuntu-latest si está funcionando
+
     steps:
     - name: Check out repository code
       uses: actions/checkout@v2
 
-    - name: Set up Python 3.10  
+    - name: Set up Python 3.10
       uses: actions/setup-python@v2
       with:
-        python-version: '3.10'  
+        python-version: '3.10'  # Asegúrate de usar una versión compatible
 
     - name: Install dependencies
       run: |
@@ -24,8 +25,11 @@ jobs:
 
     - name: Install Railway CLI
       run: |
-        curl -sSL https://cli.railway.app/install.sh | bash
-        railway --version  # Verifica si se instaló correctamente
+        curl -sSL https://cli.railway.app/install.sh | sh
+        echo "Railway CLI installed"  # Confirmación de instalación exitosa
+
+    - name: Verify Railway CLI installation
+      run: railway --version  # Verifica que la instalación fue exitosa
 
     - name: Deploy to Railway
       run: |
