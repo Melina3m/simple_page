@@ -3,22 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Aplicación Flask</title>
+    <title>Información de Producto - Mercado Libre</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .table-container {
+            margin: 0 auto;
+            width: 80%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        table th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Bienvenido a Mi Aplicación Flask</h1>
-    </header>
 
-    <main>
-        <section>
-            <h2>Sobre la Aplicación</h2>
-            <p>Esta es una aplicación web simple usando Flask, desplegada con GitHub Actions.</p>
-        </section>
-    </main>
+    <h1>Información del Producto en Mercado Libre</h1>
 
-    <footer>
-        <p>Creado por Melina Muñoz - 2024</p>
-    </footer>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Título</th>
+                <td id="titulo"></td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td id="precio"></td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td id="descripcion"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="button-container">
+        <button class="btn" onclick="window.location.reload();">Actualizar Información</button>
+    </div>
+
+    <script>
+        
+
+        // Simulando datos extraídos
+        document.getElementById('titulo').innerText = "Monitor LG 24\" UltraGear IPS 144Hz";
+        document.getElementById('precio').innerText = "$1,299,000";
+        document.getElementById('descripcion').innerText = "Monitor de 24 pulgadas con panel IPS, 144Hz y tecnología UltraGear.";
+
+        
+    </script>
 </body>
 </html>
