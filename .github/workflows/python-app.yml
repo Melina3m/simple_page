@@ -23,24 +23,14 @@ jobs:
         python -m venv venv
         venv/bin/pip install -r requirements.txt
 
-    - name: Debug information
+    - name: Install Railway CLI
       run: |
-        echo "Python version: $(python --version)"
-        echo "Installed packages: $(pip freeze)"
-
-    - name: Install Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '16'
-
-    - name: Install Railway CLI via npm
-      run: |
-        npm install -g @railway/cli
+        curl -sSL https://cli.railway.app/install.sh | bash
         railway --version
 
-    - name: Login to Railway
+    - name: Authenticate Railway with Token
       run: |
-        echo ${{ secrets.RAILWAY_TOKEN }} | railway login
+        echo ${{ secrets.RAILWAY_TOKEN }} > ~/.railway/token
 
     - name: Deploy to Railway
       run: |
