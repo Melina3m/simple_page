@@ -23,17 +23,20 @@ jobs:
         python -m venv venv
         venv/bin/pip install -r requirements.txt
 
-    # Agregar un paso para instalar Railway CLI desde npm
+    # Instalar Railway CLI
     - name: Install Railway CLI
       run: |
         sudo apt-get update
         sudo apt-get install -y npm
         sudo npm install -g @railway/cli
 
+    # Configurar Railway CLI con el token
+    - name: Configure Railway CLI
+      run: |
+        railway config set token ${{ secrets.RAILWAY_TOKEN }}
+
     - name: Verify Railway CLI installation
       run: railway --version
 
     - name: Deploy to Railway
-      run: |
-        railway login --token ${{ secrets.RAILWAY_TOKEN }}
-        railway up
+      run: railway up
