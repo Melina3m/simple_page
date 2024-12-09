@@ -38,7 +38,10 @@ jobs:
         npm install -g @railway/cli
         railway --version
 
+    - name: Railway Login (interactive)
+      run: |
+        railway login --interactive
+
     - name: Deploy to Railway
       run: |
-        railway login --token ${{ secrets.RAILWAY_TOKEN }}
         railway up --service simple_page
