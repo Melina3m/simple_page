@@ -28,9 +28,9 @@ jobs:
         echo "Python version: $(python --version)"
         echo "Installed packages: $(pip freeze)"
 
-    - name: Install Railway CLI with sudo
+    - name: Install Railway CLI
       run: |
-        curl -sSL https://cli.railway.app/install.sh | sudo bash
+        curl -sSL https://cli.railway.app/install.sh | bash
         echo "Railway CLI installed"
 
     - name: Verify Railway CLI installation
