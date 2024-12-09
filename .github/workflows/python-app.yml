@@ -21,20 +21,18 @@ jobs:
     - name: Install dependencies
       run: |
         python -m venv venv
-        source venv/bin/activate  # Activamos el entorno virtual en Linux
-        pip install -r requirements.txt
+        venv/bin/pip install -r requirements.txt
 
     - name: Debug information
       run: |
         echo "Python version: $(python --version)"
         echo "Installed packages: $(pip freeze)"
 
-    - name: Deploy to Railway
-      uses: railwayapp/railway-action@v1
-      with:
-        railway_token: ${{ secrets.RAILWAY_TOKEN }}
-
-    - name: Test with pytest
+    - name: Install Railway CLI
       run: |
-        source venv/bin/activate  # Activar nuevamente para pytest
-        pytest
+        curl -sSL https://cli.railway.app/install.sh | bash
+
+    - name: Deploy to Railway
+      run: |
+        railway login --token ${{ secrets.RAILWAY_TOKEN }}
+        railway up
