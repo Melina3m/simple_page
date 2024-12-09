@@ -2,39 +2,32 @@ name: Deploy to Railway
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Check out repository code
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.10'
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10
 
-      - name: Install dependencies
-        run: |
-          python -m venv venv
-          venv/bin/pip install -r requirements.txt
+    - name: Install dependencies
+      run: |
+        python -m venv venv
+        venv/bin/pip install -r requirements.txt
 
-      - name: Debug information
-        run: |
-          echo "Python version: $(python --version)"
-          echo "Installed packages: $(pip freeze)"
+    - name: Install Railway CLI
+      run: |
+        curl -sSL https://cli.railway.app/install.sh | bash
+        railway --version  # Verifica si se instaló correctamente
 
-      - name: Install Railway CLI
-        run: |
-          curl -sSL https://cli.railway.app/install.sh | bash
-          echo "Railway CLI installed"
-          railway --version  # Verificar que se haya instalado correctamente
-
-      - name: Deploy to Railway
-        run: |
-          railway login --token ${{ secrets.RAILWAY_TOKEN }}
-          railway up
+    - name: Deploy to Railway
+      run: |
+        railway login --token ${{ secrets.RAILWAY_TOKEN }}
+        railway up
