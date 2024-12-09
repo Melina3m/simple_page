@@ -28,16 +28,17 @@ jobs:
         echo "Python version: $(python --version)"
         echo "Installed packages: $(pip freeze)"
 
-    - name: Install Railway CLI
-      run: |
-        curl -sSL https://cli.railway.app/install.sh -o railway-installer.sh
-        chmod +x railway-installer.sh
-        ./railway-installer.sh
-        echo "Railway CLI installed"
+    - name: Install Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
 
-    - name: Verify Railway CLI installation
-      run: railway --version
+    - name: Install Railway CLI via npm
+      run: |
+        npm install -g @railway/cli
+        railway --version
 
     - name: Deploy to Railway
       run: |
+        railway login --token ${{ secrets.RAILWAY_TOKEN }}
         railway up --service simple_page
