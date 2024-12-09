@@ -2,7 +2,7 @@ name: Deploy to Railway
 
 on:
   push:
-    branches: 
+    branches:
       - main
 
 jobs:
@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Check out repository code
+    - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Python 3.10
+    - name: Set up Python
       uses: actions/setup-python@v2
       with:
         python-version: '3.10'
@@ -23,14 +23,19 @@ jobs:
         python -m venv venv
         venv/bin/pip install -r requirements.txt
 
-    # Instalar Railway CLI
-    - name: Install Railway CLI
+    - name: Debug information
       run: |
-        sudo apt-get update
-        sudo apt-get install -y npm
-        sudo npm install -g @railway/cli
+        echo "Python version: $(python --version)"
+        echo "Installed packages: $(pip freeze)"
+
+    - name: Install Railway CLI with sudo
+      run: |
+        curl -sSL https://cli.railway.app/install.sh | sudo bash
+        echo "Railway CLI installed"
+
+    - name: Verify Railway CLI installation
+      run: railway --version
 
     - name: Deploy to Railway
-      env:
-        RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-      run: railway up
+      run: |
+        railway up --service simple_page
