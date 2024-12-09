@@ -1,55 +1,79 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <!-- Meta información sobre el charset y la vista en dispositivos móviles -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Información de Producto - Mercado Libre</title>
+    
+    <!-- Título de la página -->
+    <title>Detalles del Producto</title>
+
     <style>
+        /* Estilo general para el cuerpo de la página */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
+            margin: 20px;
+            padding: 0;
         }
+
+        /* Estilo para el contenedor principal */
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        /* Estilo para el encabezado */
         h1 {
             text-align: center;
             color: #333;
         }
-        .table-container {
-            margin: 0 auto;
-            width: 80%;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+
+        /* Estilo para la tabla que muestra los detalles del producto */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
-        }
-        table th, table td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        table th {
-            background-color: #f2f2f2;
-            color: #333;
-        }
-        .button-container {
-            text-align: center;
             margin-top: 20px;
         }
+
+        /* Bordes de la tabla y celdas */
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        /* Estilo de las celdas */
+        th, td {
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        /* Fondo de los encabezados de la tabla */
+        th {
+            background-color: #f4f4f4;
+        }
+
+        /* Estilo para la imagen del producto */
+        img {
+            width: 200px;
+            height: auto;
+        }
+
+        /* Estilo para el botón de actualización */
         .btn {
-            padding: 10px 20px;
+            display: block;
+            width: 200px;
+            padding: 10px;
+            margin: 20px auto;
             background-color: #4CAF50;
             color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
+            text-align: center;
+            text-decoration: none;
             border-radius: 5px;
         }
+
+        /* Cambio de color al pasar el ratón sobre el botón */
         .btn:hover {
             background-color: #45a049;
         }
@@ -57,38 +81,36 @@
 </head>
 <body>
 
-    <h1>Información del Producto en Mercado Libre</h1>
+    <!-- Contenedor principal -->
+    <div class="container">
+        <h1>Detalles del Producto</h1>
 
-    <div class="table-container">
+        <!-- Tabla con los detalles del producto -->
         <table>
             <tr>
                 <th>Título</th>
-                <td id="titulo"></td>
+                <td>{{ titulo }}</td> <!-- Título del producto -->
             </tr>
             <tr>
                 <th>Precio</th>
-                <td id="precio"></td>
+                <td>{{ precio }}</td> <!-- Precio del producto -->
             </tr>
             <tr>
                 <th>Descripción</th>
-                <td id="descripcion"></td>
+                <td>{{ descripcion }}</td> <!-- Descripción del producto -->
+            </tr>
+            <tr>
+                <th>Imagen</th>
+                <td>
+                    <!-- Imagen del producto con URL predeterminada -->
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_950824-MCO72387800943_102023-O.webp" alt="Imagen del Producto">
+                </td>
             </tr>
         </table>
+
+        <!-- Botón para actualizar la información -->
+        <a href="{{ url_producto }}" class="btn">Actualizar Información</a>
     </div>
 
-    <div class="button-container">
-        <button class="btn" onclick="window.location.reload();">Actualizar Información</button>
-    </div>
-
-    <script>
-        
-
-        // Simulando datos extraídos
-        document.getElementById('titulo').innerText = "Monitor LG 24\" UltraGear IPS 144Hz";
-        document.getElementById('precio').innerText = "$1,299,000";
-        document.getElementById('descripcion').innerText = "Monitor de 24 pulgadas con panel IPS, 144Hz y tecnología UltraGear.";
-
-        
-    </script>
 </body>
 </html>
