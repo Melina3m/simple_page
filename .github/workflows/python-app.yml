@@ -23,11 +23,10 @@ jobs:
         python -m venv venv
         venv/bin/pip install -r requirements.txt
 
-    - name: Install Railway CLI
-      run: |
-        curl -sSL https://railway.app/cli.sh | bash
-        sudo mv /root/.local/bin/railway /usr/local/bin/railway
-        railway --version
+- name: Install Railway CLI via npm
+  run: |
+    npm install -g railway
+
 
     - name: Authenticate Railway with Token
       run: |
