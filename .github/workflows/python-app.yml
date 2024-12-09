@@ -23,19 +23,12 @@ jobs:
         python -m venv venv
         venv/bin/pip install -r requirements.txt
 
-    # Agregar un paso de depuración
-    - name: Debug the environment
+    # Agregar un paso para instalar Railway CLI desde npm
+    - name: Install Railway CLI
       run: |
-        echo "Python version: $(python --version)"
-        echo "Installed packages: $(pip freeze)"
-        echo "NPM version: $(npm --version)"
-        echo "Railway CLI version: $(railway --version)"
-
-    # Intentar instalar Railway CLI via npm
-    - name: Install Railway CLI via npm
-      run: |
-        sudo apt-get install npm
-        sudo npm install -g railway
+        sudo apt-get update
+        sudo apt-get install -y npm
+        sudo npm install -g @railway/cli
 
     - name: Verify Railway CLI installation
       run: railway --version
