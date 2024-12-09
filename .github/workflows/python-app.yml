@@ -27,9 +27,9 @@ jobs:
       run: |
         npm install -g @railway/cli
 
-    - name: Authenticate Railway with Token
+    - name: Set Railway Token
       run: |
-        echo ${{ secrets.RAILWAY_TOKEN }} | railway login
+        echo "RAILWAY_TOKEN=${{ secrets.RAILWAY_TOKEN }}" >> $GITHUB_ENV
 
     - name: Deploy to Railway
       run: |
