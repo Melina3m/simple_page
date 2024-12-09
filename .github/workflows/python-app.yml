@@ -29,8 +29,7 @@ jobs:
 
     - name: Authenticate Railway with Token
       run: |
-        mkdir -p ~/.railway
-        echo ${{ secrets.RAILWAY_TOKEN }} > ~/.railway/token
+        railway login --token ${{ secrets.RAILWAY_TOKEN }}
 
     - name: Deploy to Railway
       run: |
