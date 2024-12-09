@@ -7,7 +7,8 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+        runs-on: ubuntu-22.04
+
 
     steps:
     - name: Checkout repository
@@ -28,9 +29,13 @@ jobs:
         echo "Python version: $(python --version)"
         echo "Installed packages: $(pip freeze)"
 
-    - name: Install Railway CLI
+    - name: Install Railway CLI with sudo
       run: |
-        curl -sSL https://cli.railway.app/install.sh | bash
+        curl -sSL https://cli.railway.app/install.sh | sudo bash
+        echo "Railway CLI installed"
+
+    - name: Verify Railway CLI installation
+      run: railway --version
 
     - name: Deploy to Railway
       run: |
